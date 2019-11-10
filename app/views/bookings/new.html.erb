@@ -1,0 +1,60 @@
+<%= form_for(:booking, :url => { :action => "create" }) do |f| %>
+<div class="section">
+    <div class=container>
+<div class="columns is-centered">
+<div class="column is-one-third">
+<%= link_to "View My Bookings", all_bookings_path, class:"button is-danger is-centered" %>
+<div class="box">
+<h2 class="title">New Booking</h2>
+
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+
+  <div class="content">
+    <%= f.date_field :booking_date, autofocus: true, autocomplete: "booking_date", class: "input is-primary", placeholder: "Booking Date" %>
+  </div>
+
+  <div class="content">
+    <%= f.date_field :returned_date, autocomplete: "returned_date", class: "input is-primary", placeholder: "Returned_date" %>
+  </div>
+
+</div>
+</div>
+</div>
+       
+    <div class="hero">
+    <div class="columns hero-body is-centered">
+    <div class="column is-full">
+	<table class="table is-bordered is-fullwidth">
+		<thead>
+			<tr>
+      				<th>Car Number</th>
+      				<th>Car Name</th>
+      				<th>Car Type</th>
+      				<th>Car City</th>
+      				<th>Car Area</th>
+      				<th>Rate</th>
+      				<th>Select</th>
+    			</tr>
+		</thead>
+		<tbody>
+        	<% @cars.each do |car| %>
+			<tr>
+				<th><%= car.car_no %></th>
+				<th><%= car.car_name %></th>
+				<th><%= car.car_type %></th>
+				<th><%= car.car_city %></th>
+				<th><%= car.car_area %></th>
+				<th>₹ <%= car.rate %></th>
+				<th><%= f.radio_button :car_no, car.car_no %></th>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+    </div>
+    </div>
+    </div>
+  <div class="content">
+    <%= f.submit "Create Booking", class: "button is-link" %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,33 @@
+<div class="section">
+<h2 class="title is-3">Bookings for Customer <%= current_customer.name %></h2>
+<%= link_to "Book a new Car", new_bookings_path, class:"button is-info is-centered" %>
+    <div class="hero">
+    <div class="columns hero-body is-centered">
+    <div class="column is-full">
+	<table class="table is-bordered is-fullwidth">
+		<thead>
+			<tr>
+      				<th>Booking Id</th>
+      				<th>Car Number</th>
+      				<th>Booking Date</th>
+      				<th>Returned Date</th>
+      				<th>Total Amount</th>
+    			</tr>
+		</thead>
+		<tbody>
+        	<% @bookings.each do |booking| %>
+			<tr>
+				<th><%= booking.id %></th>
+				<th><%= booking.car_no %></th>
+				<th><%= booking.booking_date %></th>
+				<th><%= booking.returned_date %></th>
+				<th>₹ <%= booking.total_amount %></th>
+				<th><%= link_to "Delete", destroy_bookings_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %></th>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+    </div>
+    </div>
+    </div>
+</div>

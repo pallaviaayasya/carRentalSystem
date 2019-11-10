@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="has-navbar-fixed-top with-bg">
+  <nav class="navbar has-background-grey is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="http://localhost:3000/">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        How CarRentals Works?
+      </a>
+
+      <a class="navbar-item">
+        Policies
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-item">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-link">
+            Contact
+          </a>
+          <a class="navbar-link">
+            Jobs
+          </a>
+          <a class="navbar-link">
+            About
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-link">
+            Report an issue
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+		<% if customer_signed_in? %>
+			<%= link_to "Log out #{current_customer.name}", destroy_customer_session_path, class: "button is-link", :method => :delete %>
+		<% elsif admin_signed_in? %>
+			<%= link_to "Log out #{current_admin.name}", destroy_admin_session_path, class: "button is-link", :method => :delete %>
+		<% else %>
+			<%= link_to "Customer SignUp", new_customer_registration_path, class: "button is-link" %> 
+			<%= link_to "Customer Log in", new_customer_session_path, class: "button is-light" %> 
+			<%= link_to "Admin Log in", new_admin_session_path, class: "button is-light" %> 
+		<% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  </nav>
+  <p class="notice is-info has-text-centered"><%= notice %></p>
+  <p class="alert is-danger has-text-centered"><%= alert %></p>
+<%= yield %>
+</body>
+</html>

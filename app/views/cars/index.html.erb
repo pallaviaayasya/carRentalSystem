@@ -1,0 +1,80 @@
+<div class="section">
+    <div class=container>
+<div class="columns is-centered">
+<div class="column is-one-third">
+<%= link_to "View All Customers", all_customers_path, class:"button is-danger is-centered" %>
+<div class="box">
+<h2 class="title">Add a new Car?</h2>
+
+<%= form_for(:car, :url => { :action => "create" }) do |f| %>
+
+  <div class="content">
+    <%= f.text_field :car_no, autofocus: true, autocomplete: "car_no", class: "input is-primary", placeholder: "Car Number" %>
+  </div>
+
+  <div class="content">
+    <%= f.text_field :car_name, autocomplete: "car_name", class: "input is-primary", placeholder: "Car Name" %>
+  </div>
+
+  <div class="content">
+    <%= f.text_field :car_type, autocomplete: "car_type", class: "input is-primary", placeholder: "Car Type" %>
+  </div>
+
+  <div class="content">
+    <%= f.text_field :car_city, autocomplete: "car_city", class: "input is-primary", placeholder: "City" %>
+  </div>
+
+  <div class="content">
+    <%= f.text_field :car_area, autocomplete: "car_area", class: "input is-primary", placeholder: "Area" %>
+  </div>
+
+  <div class="rate">
+    <%= f.number_field :rate, autocomplete: "rate", class: "input is-primary", placeholder: "Rate" %>
+  </div>
+
+  <div class="content">
+    <%= f.submit "Add Car", class: "button is-link" %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
+       
+    <div class="hero">
+    <div class="columns hero-body is-centered">
+    <div class="column is-full">
+	<table class="table is-bordered is-fullwidth">
+		<thead>
+			<tr>
+      				<th>Car Number</th>
+      				<th>Car Name</th>
+      				<th>Car Type</th>
+      				<th>Car City</th>
+      				<th>Car Area</th>
+      				<th>Rate</th>
+      				<th>Delete?</th>
+    			</tr>
+		</thead>
+		<tbody>
+        	<% @cars.each do |car| %>
+			<tr>
+				<th><%= car.car_no %></th>
+				<th><%= car.car_name %></th>
+				<th><%= car.car_type %></th>
+				<th><%= car.car_city %></th>
+				<th><%= car.car_area %></th>
+				<th>₹ <%= car.rate %></th>
+				<th>
+					<% if car.bookings(car.car_no).empty? %>
+						<%= link_to "Delete", cars_path(car), method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %>
+					<% else %>
+						Cannot Delete Car as it has open bookings
+					<% end %>
+				</th>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+    </div>
+    </div>
+    </div>

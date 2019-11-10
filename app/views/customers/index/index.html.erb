@@ -1,0 +1,38 @@
+<div class="section">
+    <div class=container>
+<div class="columns is-centered">
+<div class="column is-one-third">
+<%= link_to "View All Cars", all_cars_path, class:"button is-danger is-centered" %>
+</div>
+</div>
+</div>
+       
+    <div class="hero">
+    <div class="columns hero-body is-centered">
+    <div class="column is-full">
+	<table class="table is-bordered is-fullwidth">
+		<thead>
+			<tr>
+      				<th>Customer ID</th>
+      				<th>Name</th>
+      				<th>DL Number</th>
+      				<th>Phone Number/th>
+      				<th>Email Address</th>
+    			</tr>
+		</thead>
+		<tbody>
+        	<% @customers.each do |customer| %>
+			<tr>
+				<th><%= customer.id %></th>
+				<th><%= customer.name %></th>
+				<th><%= customer.dl_no %></th>
+				<th><%= customer.phone_no %></th>
+				<th><%= customer.email %></th>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+    </div>
+    </div>
+    </div>
+</div>

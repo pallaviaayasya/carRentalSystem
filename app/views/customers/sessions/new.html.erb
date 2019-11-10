@@ -1,0 +1,30 @@
+<div class="hero is-fullheight">
+<div class="hero-body columns is-centered">
+<div class="column is-one-third">
+<div class="box">
+<h2 class="title">Customer Login</h2>
+
+<%= form_for(resource, url: customer_session_path) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="content">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-primary", placeholder: "Email" %>
+  </div>
+
+  <div class="content">
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "input is-primary", placeholder: "Password" %>
+  </div>
+
+  <div class="content">
+    <%= f.submit "Log in", class: "button is-link" %>
+  </div>
+<% end %>
+
+<%= render "customers/shared/links" %>
+</div>
+</div>
+</div>
+</div>
