@@ -1,6 +1,0 @@
-CREATE TRIGGER total_amount
-BEFORE INSERT
-ON BOOKING
-FOR EACH ROW
-VAR @sum= EXEC(SELECT rate FROM CAR)
-SET total_amt=@sum * (DATEDIFF(days,BOOKING.returned_date,BOOKING.booking_date))

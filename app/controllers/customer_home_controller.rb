@@ -1,2 +1,0 @@
-class CustomerHomeController < ApplicationController
-end

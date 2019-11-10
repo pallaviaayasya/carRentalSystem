@@ -7,6 +7,7 @@ class CreateBookings < ActiveRecord::Migration[6.0]
       t.date :booking_date
       t.date :returned_date
       t.float :total_amount
+      t.string :card_no, null: false
 
       t.timestamps
     end

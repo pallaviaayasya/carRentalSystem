@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_155326) do
+ActiveRecord::Schema.define(version: 2019_11_10_084612) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_155326) do
     t.date "booking_date"
     t.date "returned_date"
     t.float "total_amount"
+    t.string "card_no", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["car_no"], name: "fk_rails_5f39f61cb2"
@@ -57,6 +58,19 @@ ActiveRecord::Schema.define(version: 2019_11_09_155326) do
     t.index ["email"], name: "index_customers_on_email", unique: true
   end
 
+  create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.string "card_type", null: false
+    t.string "card_no", null: false
+    t.date "expiry_date", null: false
+    t.integer "cvv", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_no"], name: "index_payments_on_card_no", unique: true
+    t.index ["customer_id"], name: "index_payments_on_customer_id"
+  end
+
   add_foreign_key "bookings", "cars", column: "car_no", primary_key: "car_no"
   add_foreign_key "bookings", "customers"
+  add_foreign_key "payments", "customers"
 end

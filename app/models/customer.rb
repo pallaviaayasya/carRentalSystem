@@ -4,5 +4,6 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
   has_many :bookings
+  has_many :payments
   has_many :cars, :through => :bookings
 end

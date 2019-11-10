@@ -12,17 +12,20 @@
       				<th>Booking Date</th>
       				<th>Returned Date</th>
       				<th>Total Amount</th>
+      				<th>Card Number</th>
+      				<th>Delete Booking?</th>
     			</tr>
 		</thead>
 		<tbody>
         	<% @bookings.each do |booking| %>
 			<tr>
-				<th><%= booking.id %></th>
+				<th><%= booking.booking_id %></th>
 				<th><%= booking.car_no %></th>
 				<th><%= booking.booking_date %></th>
 				<th><%= booking.returned_date %></th>
 				<th>₹ <%= booking.total_amount %></th>
-				<th><%= link_to "Delete", destroy_bookings_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %></th>
+				<th><%= booking.card_no %></th>
+				<th><%= link_to "Delete", destroy_bookings_path(booking.booking_id), method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %></th>
 			</tr>
 		<% end %>
 		</tbody>

@@ -61,6 +61,7 @@
         <div class="buttons">
 		<% if customer_signed_in? %>
 			<%= link_to "Log out #{current_customer.name}", destroy_customer_session_path, class: "button is-link", :method => :delete %>
+			<%= link_to "Manage Payment Instruments", all_payments_path, class: "button is-light" %>
 		<% elsif admin_signed_in? %>
 			<%= link_to "Log out #{current_admin.name}", destroy_admin_session_path, class: "button is-link", :method => :delete %>
 		<% else %>

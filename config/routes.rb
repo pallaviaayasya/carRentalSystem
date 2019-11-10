@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :payments
   devise_for :customers, path: 'customers', controllers: {registrations: "customers/registrations", sessions: "customers/sessions"}
   devise_for :admins, path: 'admins', controllers: {sessions: "admins/sessions"}
 
@@ -28,6 +27,9 @@ Rails.application.routes.draw do
   get "/bookings", to: "bookings#new", as: "new_bookings"
   post "/bookings", to: "bookings#create"
   delete "/bookings", to: "bookings#destroy", as: "destroy_bookings"
+
+  get "/payments/all", to: "payments#index", as: "all_payments"
+  post "/payments", to: "payments#create"
 
   root to: 'demo#index'
 end

@@ -17,6 +17,10 @@
     <%= f.date_field :returned_date, autocomplete: "returned_date", class: "input is-primary", placeholder: "Returned_date" %>
   </div>
 
+  <% current_customer.payments.each do |payment| %>
+	  <%= f.radio_button :card_no, payment.card_no %> <%= payment.card_no %> <br/>
+  <% end %>
+
 </div>
 </div>
 </div>
@@ -54,7 +58,7 @@
     </div>
     </div>
   <div class="content">
-    <%= f.submit "Create Booking", class: "button is-link" %>
+	  <%= f.submit current_customer.payments.empty? ? "Add Payment Instrument First" : "Create Booking", class: "button is-link", disabled: current_customer.payments.empty? %>
   </div>
 </div>
 <% end %>
