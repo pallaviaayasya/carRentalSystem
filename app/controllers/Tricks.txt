@@ -1,0 +1,1 @@
+* Use sliding window technique if sequence of input matters without gaps
